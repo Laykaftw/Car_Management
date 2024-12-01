@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="card shadow mb-4">
+        <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+            <label>Makers </label>
+            <select class="form-control form-control-lg" id="idmake" name="idmake" [(ngModel)]="selectedMakerId" (change)="onChange()">
+                <option *ngFor="let maker of makers" [value]="maker.id">
+                    {{maker.name}}
+                </option>
+            </select>
+        </div>
+
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Launch Date</th>
+                        <th>Maker</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let car of cars">
+                    <tr>
+                        <td>{{car.idCar}}</td>
+                        <td>{{car.carModel}}</td>
+                        <td>{{car.carPrice}}</td>
+                        <td>{{car.dateManufacture | date:'dd/MM/yyyy'}}</td>
+                        <td>{{car.maker.name}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

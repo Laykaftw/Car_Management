@@ -1,0 +1,35 @@
+<div class="container">
+    <form class="form-inline">
+        <div class="form-group mx-sm-3 mb-2 mt-2 ">
+            <label>Car Name</label>
+            <input [(ngModel)]="searchTerm" name="searchTerm" class="form-control">
+            <!-- <button type="submit" (click)="rechercherCars()" class="btn btn-primary mb-2 ml-2">Search</button> -->
+        </div>
+    </form>
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Launch Date</th>
+                    <th>Maker</th>
+                </tr>
+                <tbody *ngFor="let Car of cars | searchFilter:searchTerm ">
+                    <tr>
+                        <td>{{Car.idCar}}</td>
+                        <td>{{Car.carModel}}</td>
+                        <td>{{Car.carPrice}}</td>
+                        <td>{{Car.dateManufacture | date:'dd/MM/yyyy'}}</td>
+                        <td>{{Car.maker.name}}</td>
+                        <!-- <td><a *ngIf="authService.isAdmin()" class="btn btn-danger"
+                                (click)="supprimerCar(Car)">Delete</a></td>
+                        <td><a *ngIf="authService.isAdmin()  ||  authService.isAgent()" class="btn btn-success"
+                                [routerLink]="['/updateCar',Car.idCar]">Update</a></td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

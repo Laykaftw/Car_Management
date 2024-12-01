@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Launch Date</th>
+                        <th>Maker</th>
+                        <th>Image</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let car of cars">
+                        <td>{{ car.idCar }}</td>
+                        <td>{{ car.carModel }}</td>
+                        <td>{{ car.carPrice }}</td>
+                        <td>{{ car.dateManufacture | date: 'dd/MM/yyyy' }}</td>
+                        <td>{{ car.maker?.name }}</td>
+                        <td>
+                            <img class="img-fluid rounded" [src]="car.imageStr"
+                                style="height: 50px; width: 100px;">
+                        </td>
+                        <td>
+                            <!-- Delete Button -->
+                            <a *ngIf="authService.isAdmin()" class="btn btn-danger btn-sm" (click)="supprimercars(car)">
+                                Supprimer
+                            </a>
+                            <!-- Update Button -->
+                            <a *ngIf="authService.isAdmin()" class="btn btn-success btn-sm"
+                                [routerLink]="['/updatecar', car.idCar]">
+                                Modifier
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="container mt-5">
+    <div class="row justify-content-md-center">
+        <div class="col-md-4">
+            <div class="alert alert-danger" *ngIf="err==1">
+                <strong>{{message}}</strong>
+            </div>
+
+            <form>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" class="form-control" [(ngModel)]="user.username">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" [(ngModel)]="user.password" class="form-control">
+                </div>
+                <p>You don't have an account? <a routerLink="/register">Register </a></p>
+                <div class="row justify-content-md-center">
+                    <button type="button" (click)="onLoggedin()" class="btn btn-success">Log in</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

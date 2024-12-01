@@ -1,0 +1,110 @@
+<div class="container">
+  <div>
+    <h2>Updating a Car:</h2>
+  </div>
+  <form>
+    <!-- Car ID -->
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>Car ID</label>
+      <input readonly type="text" [(ngModel)]="currentCar.idCar" name="idCar" class="form-control" />
+    </div>
+
+    <!-- Car Model -->
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Car Name</label>
+      <input 
+        type="text" 
+        [(ngModel)]="currentCar.carModel" 
+        name="carModel" 
+        class="form-control" 
+        required />
+      <div *ngIf="!currentCar.carModel" class="text-danger">Car Model is required.</div>
+    </div>
+
+    <!-- Car Price -->
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>Price In $</label>
+      <input 
+        type="number" 
+        [(ngModel)]="currentCar.carPrice" 
+        name="carPrice" 
+        class="form-control" 
+        required />
+      <div *ngIf="!currentCar.carPrice" class="text-danger">Price is required.</div>
+    </div>
+
+    <!-- Launch Date -->
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Launch Date</label>
+      <input 
+        type="date" 
+        [(ngModel)]="currentCar.dateManufacture" 
+        name="dateManufacture" 
+        class="form-control" 
+        required />
+    </div>
+
+    <!-- Maker Selection -->
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Maker</label>
+      <select class="form-control form-control-lg" id="id" name="id" [(ngModel)]="updatedMakerId">
+        <option *ngFor="let maker of makers" [value]="maker.id">
+          {{ maker.name }}
+        </option>
+      </select>
+    </div>
+
+    <!-- File Upload -->
+    <div class="col-sm-16 col-md-16 col-lg-16">
+      <label class="mb-2">Image:</label>
+      <input type="file" (change)="onImageUpload($event)" class="form-control" />
+    </div>
+
+    <!-- Add Image Button -->
+    <div class="mt-2">
+      <button type="button" (click)="onAddImageCar()" class="btn btn-success">
+        Add Image
+      </button>
+    </div>
+
+    <!-- Preview Image -->
+    <div class="col-sm-16 col-md-16 col-lg-16">
+      <img [src]="myImage" class="card-img-top img-fluid rounded-start" style="width: 500px; height: 300px" />
+    </div>
+
+    <!-- Images Table -->
+    <div class="card shadow mb-4">
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Images</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let img of currentCar.images">
+            <tr>
+              <td>
+                <img 
+                  class="card-img-top img-responsive" 
+                  src="{{ 'data:' + img.type + ';base64,' + img.image }}" 
+                  style="height: 50px; width: 100px" />
+              </td>
+              <td style="width: 20%">
+                <button type="button" class="btn btn-danger" (click)="supprimerImage(img)">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Update Button -->
+    <div class="mt-2">
+      <button type="button" (click)="updateCar()" class="btn btn-success">
+        Update
+      </button>
+    </div>
+  </form>
+</div>
